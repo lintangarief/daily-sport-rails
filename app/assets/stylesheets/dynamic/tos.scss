@@ -1,0 +1,34 @@
+#termsofuse .container-fluid.section-1{
+  background: url("/images/background-home-section-1.gif") center no-repeat;
+  background-color: #00252C;
+  background-size: cover;
+  min-height: 100vh;
+}
+#termsofuse .container-fluid .container.container-1 .row.row-1{
+  margin-top: 70px;
+  padding-left: 35px;
+  padding-right: 50px;
+  background: #06343C;
+  color: white;
+  text-align: center;
+}
+#termsofuse .container-fluid.section-1 .container.container-2{
+  background: #012329;
+  padding: 50px;
+  color: #F7E1C8;
+  line-height: 1.7;
+}
+#termsofuse .container-fluid.section-1 .container.container-3{
+  background: #012329;
+  padding: 50px;
+  color: #F7E1C8;
+  line-height: 1.7;
+  border-bottom: 2px solid #0F4852;
+}
+body.termsofuse .navbar-custom {
+  background-color: #012329;
+  border-color: transparent;
+}
+body.termsofuse footer, body.termsofuse footer h5.text-center, body.termsofuse footer .box-copyright {
+  background: #012329;
+}

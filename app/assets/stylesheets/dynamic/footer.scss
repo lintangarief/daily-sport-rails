@@ -1,0 +1,40 @@
+footer { display: block; }
+a { background-color: transparent; }
+a:active,a:hover { outline: 0px; }
+img { border: 0px; }
+* { box-sizing: border-box; }
+footer a, footer .text-gray { color: #B2B2B2; text-decoration: none; }
+a:hover { color: #23527c; text-decoration: none; }
+img { vertical-align: middle; }
+p { margin: 0px 0px 10px; }
+ul { margin-top: 0px; margin-bottom: 10px; }
+.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+.row { margin-right: -15px; margin-left: -15px; }
+.col-md-3,.col-md-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px; }
+.container::before,.container::after,.row::before,.row::after { display: table; content: " "; }
+.container::after,.row::after { clear: both; }
+.pull-right { float: right !important; }
+footer { color: #fff; padding-top: 60px; padding-bottom: 35px; background: #121819;}
+footer .copy-left { font-size: 12px; padding-top: 15px; margin-top: 15px; border-top: 1px solid #fff; }
+div.clear { clear: both; }
+div.dsb-footer-support-title,div.dsb-footer-about-title,div.dsb-footer-getintouch-title { font-weight: bold; font-size: 18px; margin-left: 0px; color: #FDB03C;}
+div.dsb-footer-getintouch-title { text-align: right; margin-right: 0px; }
+ul.dsb-footer-about-ul li a { text-decoration: none; color: #d2d2d3; }
+ul.dsb-footer-about-ul li { list-style-type: none; margin-bottom: 5px; }
+ul.dsb-footer-about-ul { margin-left: -40px; margin-top: 15px; }
+div.dsb-footer-getintouch-description { color: #d2d2d3; text-align: right; margin-right: 0px; margin-top: 15px; }
+a.footer-mailto-dsbpos { text-decoration: none; color: #d2d2d3; }
+div.col-md-12.pull-right.social-icon-footer { text-align: right; margin-top: 20px; margin-right: 0px; }
+div.copy-left p { padding: 0px; margin-bottom: 0px; }
+div.copy-left { padding-bottom: 10px; border-top: 1px solid #8f969f; color: #8f969f; background-color: #2e3139; }
+img.social-icon { width: 40px; }
+a.social-link { margin-left: 5px; }
+.element-non-mobi { display: block; }
+footer .box-copyright{
+  background: #121819;
+}
+footer h5.text-center {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    background: #121819;
+}

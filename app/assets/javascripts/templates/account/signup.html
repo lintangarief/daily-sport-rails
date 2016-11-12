@@ -1,0 +1,78 @@
+<div class="container-fluid main-container ng-scope" id="signup">
+  <div class="signup">
+    <div class="col-xs-12 col-sm-12 col-sm-12 signup-header col-md-11 col-xs-10 box-center">
+      <img src="/assets/logo.png" class="img-responsive">
+    </div>
+    <div class="col-md-12 col-xs-12 col-sm-12 box-form">
+      <img src="/assets/head_signup.png" class="img-responsive image-head-signup">
+      <form id="signupForm" ng-show="!message">
+        <div class="signup-form">
+          <div class="col-md-12 col-xs-12 col-sm-12 form-group">
+            <ul>
+              <li ng-repeat="message in errorMessage"><small class="help-block">{{message}}</small></li>
+            </ul>
+          </div>
+          <div class="form-group col-md-12 col-xs-12 col-sm-12 col-lg-12">
+            <div class="col-md-6 col-xs-12 col-sm-12">
+              <h3>Full Name:</h3>
+              <input class="block input username" ng-model="account.first_name" name="first_name" type="text" placeholder="Enter Fullname">
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-12">
+              <h3>Last Name:</h3>
+              <input class="block input username" ng-model="account.last_name" name="last_name" type="text" placeholder="Enter Fullname">
+            </div>
+          </div>
+          <div class="form-group col-md-12 col-xs-12 col-sm-12 col-lg-12">
+            <div class="col-md-6 col-xs-12 col-sm-12">
+              <h3>Username:</h3>
+              <input class="block input username" ng-model="account.username" name="username" type="text" placeholder="Enter Username">
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-12">
+              <h3>Email:</h3>
+              <input class="block input username" ng-model="account.email" name="email" type="text" placeholder="Enter Email">
+            </div>
+          </div>
+          <div class="form-group col-md-12 col-xs-12 col-sm-12 col-lg-12">
+            <div class="col-md-6 col-xs-12 col-sm-12">
+              <h3>Password:</h3>
+              <input class="block input username" ng-model="account.password" name="password" type="text" placeholder="Enter Password">
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-12">
+              <h3>Confirmation Password:</h3>
+              <input class="block input username" name="password2" ng-model="account.password2" type="text" placeholder="Enter Re-Password">
+            </div>
+          </div>
+          <div class="form-group col-md-12 col-xs-12 col-sm-12 col-lg-12">
+            <div class="col-md-6 col-xs-12 col-sm-12">
+              <h3>Phone Number:</h3>
+              <input class="block input username" ng-model="account.mobilephone" name="mobilephone" type="text" placeholder="Enter Phone Number">
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-12">
+              <h3>Birthday:</h3>
+              <input class="block input username" type="text" name="birthday" ng-model="account.birthday" placeholder="Enter birthday"id="datepicker">
+            </div>
+          </div>
+          <div class="form-group col-md-12 col-xs-12 col-sm-12 col-lg-12">
+            <div class="col-md-6 col-xs-12 col-sm-12">
+              <h3>Address:</h3>
+              <input class="block input username" ng-model="account.address" name="address" type="text" placeholder="Address">
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-12">
+              <h3>Zip Code:</h3>
+              <input class="block input username" ng-model="account.zipcode" name="zip_code" type="text" placeholder="Zip Code">
+            </div>
+          </div>
+          <div class="form-group col-md-12 col-xs-12 col-sm-12 col-lg-12">
+            <div class="col-md-12 col-xs-12 col-sm-12">
+              <button class="submit-button" ng-click="signup(account)">
+                <img src="/assets/button_submit_idle.png" class="img-submit" alt="">
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <h3 class="text-center" ng-show="message">{{message}}</h3>
+    </div>
+  </div>
+</div>

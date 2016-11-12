@@ -1,0 +1,97 @@
+#rules .container-fluid.section-1{
+  background: url("/images/background-home-section-1.gif") center no-repeat;
+  background-color: #00252C;
+  background-size: cover;
+  min-height: 100vh;
+}
+#rules .container-fluid .container.container-1 .row.row-1{
+  margin-top: 70px;
+  padding-left: 35px;
+  padding-right: 50px;
+  background: #06343C;
+  color: white;
+  text-align: center;
+}
+#rules .container-fluid.section-1 .container.container-4{
+  background: #012329;
+  color: #F7E1C8;
+  padding-left: 35px;
+  padding-bottom: 40px;
+  border-bottom: 2px solid #6b2d04;
+}
+#rules .container-fluid.section-1 .container.container-4 .assistanceBox{
+  box-sizing: border-box;
+  background-color: #F7E1C8;
+  border: 1px solid #E66117;
+  height: 120px;
+  color: black;
+  padding: 30px 10px 10px 10px;
+  margin-top: 50px;
+}
+#rules .container-fluid.section-1 .container.container-4 .title-assistance{
+  width: 80%;
+  display: block;
+  background: #E66117;
+  padding: 5px;
+  margin: 0 auto;
+  top: 0;
+  margin-top: -43px;
+  color: #F7E1C8;
+  font-size: 18px;
+}
+#rules .container-fluid.section-1 .container.container-4 p{
+  padding-top: 15px;
+  line-height: 1.7;
+}
+
+#rules .container-fluid.section-1 .container.container-4 h2{
+  background: #012329;
+  color: #F7E1C8;
+  font-size: 20px;
+}
+#rules .container-fluid.section-1 .container.container-3{
+  background: #012329;
+  padding: 50px;
+  color: #F7E1C8;
+  line-height: 1.7;
+  padding-top: 20px;
+}
+#rules .container-fluid.section-1 .container.container-3 h1{
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+#rules .container-fluid.section-1 .container.container-3 h2{
+  font-size: 32px;
+  font-weight: bold;
+}
+#rules .container-fluid.section-1 .container.container-3 h3{
+  font-size: 22px;
+}
+#rules .container-fluid.section-1 .container.container-3 p{
+  font-size: 15px;
+}
+#rules hr{
+  margin-left: -13px;
+  border-top: 1px solid #6b2d04;
+}
+
+#rules table{
+  width: 100%;
+}
+#rules table tr{
+  line-height: 3.2;
+  border-bottom: 1px solid #6b2d04;
+}
+#rules table tr td{
+  font-size: 15px;
+}
+#rules table tr td:last-child{
+  text-align: right;
+}
+body.rules .navbar-custom {
+  background-color: #012329;
+  border-color: transparent;
+}
+body.rules footer, body.rules footer h5.text-center, body.rules footer .box-copyright {
+  background: #012329;
+}

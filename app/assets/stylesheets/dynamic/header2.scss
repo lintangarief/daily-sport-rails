@@ -1,0 +1,30 @@
+img.image-responsive.logo-header{
+  width: 265px;
+  padding-top: 16px;
+  padding-right: 35px;
+}
+nav#mainNav2 {
+  background: #00252C;
+  border: none;
+  ul.nav.navbar-nav {
+    padding: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    li a{
+      color: white;
+    }
+    li a:hover{
+      color: #FBB03B;
+    }
+    li.active a{
+      background: none;
+    }
+    li.menu-left {
+        border-bottom: 3px solid #094E5A;
+    }
+    li.menu-left:hover {
+        border-bottom: 3px solid #FBB03B;
+    }
+  }
+}

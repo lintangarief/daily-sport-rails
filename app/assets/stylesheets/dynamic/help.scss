@@ -1,0 +1,77 @@
+body.help .navbar-custom {
+  background-color: #012329;
+  border-color: transparent;
+}
+body.help footer, body.help footer h5.text-center, body.help footer .box-copyright {
+  background: #012329;
+}
+#help .container-fluid.section-1{
+  background: url("/images/background-home-section-1.gif") center no-repeat;
+  background-color: #00252C;
+  background-size: cover;
+}
+#help .container-fluid .container.container-1 .row.row-1{
+  margin-top: 70px;
+  padding-left: 35px;
+  padding-right: 50px;
+  background: #06343C;
+  color: white;
+  text-align: center;
+}
+#help .container-fluid h1{
+  color: #FBB03B;
+}
+#help .container-fluid.section-1 .container.container-2{
+  background: #012329;
+  padding: 50px;
+  color: white;
+  line-height: 1.7;
+}
+#help .container-fluid.section-1 .container.container-2 .assistanceBox {
+    box-sizing: border-box;
+    border: 2px solid #094E5A;
+    min-height: 160px;
+    color: #ddd;
+    padding: 30px 10px 10px 10px;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 15px;
+}
+#help .container-fluid.section-1 .container.container-2 .title-assistance{
+  width: 88%;
+  display: block;
+  background: #094E5A;
+  padding: 5px;
+  margin: 0 auto;
+  top: 0;
+  margin-top: -43px;
+  color: #ddd;
+  font-size: 16px;
+}
+#help .container-fluid.section-1 .container.container-2 p{
+  padding-top: 25px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+#help .container-fluid.section-1 .container.container-2 h2{
+  background: #012329;
+  color: white;
+  font-size: 30px;
+}
+#help .container-fluid.section-1 .container.container-3{
+  background: #012329;
+  padding: 50px;
+  padding-top: 0px;
+  color: white;
+  line-height: 1.7;
+  border-bottom: 2px solid #0F4852;
+}
+#help .row.row-2 p{
+  font-size: 16px;
+  color: #ddd;
+}
+#help hr{
+  margin-left: -13px;
+  border-top: 1px solid #0F4852;
+}

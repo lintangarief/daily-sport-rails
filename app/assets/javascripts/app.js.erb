@@ -1,0 +1,46 @@
+var dailyApp = angular.module('daily', ['ui.router', 'ui.bootstrap']);
+
+dailyApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
+  function ($stateProvider, $urlRouterProvider, $httpProvider) {
+    $urlRouterProvider.otherwise('/account');
+    $stateProvider.state('account', {
+      url: '/account',
+    }).state('login', {
+      url: '/login',
+      templateUrl: '<%= asset_path("templates/account/login.html") %>',
+      controller: 'loginController'
+    }).state('signup', {
+      url: '/signup',
+      templateUrl: '<%= asset_path("templates/account/signup.html") %>',
+      controller: 'signupController'
+    }).state('forgotpassword', {
+      url: '/forgotpassword',
+      templateUrl: '<%= asset_path("templates/account/forgotpassword.html") %>',
+      controller: 'forgotPasswordController'
+    }).state('resetpassword', {
+      url: '/forgotpassword/:token',
+      templateUrl: '<%= asset_path("templates/account/resetpassword.html") %>',
+      controller: 'resetPasswordController'
+    }).state('signupcomplete', {
+      url: '/signup_complete/:token',
+      templateUrl: '<%= asset_path("templates/account/signup_complete.html") %>',
+      controller: 'signupCompleteController'
+    }).state('account.profile', {
+      url: '/profile',
+      templateUrl: '<%= asset_path("templates/account/profile.html") %>',
+      controller: 'profileController'
+    }).state('account.prizeverification', {
+      url: '/prizeverification',
+      templateUrl: '<%= asset_path("templates/account/prizeverification.html") %>',
+      controller: 'prizeverification'
+    }).state('lobby', {
+      url: '/lobby',
+      templateUrl: '<%= asset_path("templates/games/lobby.html") %>',
+      controller: 'lobbyController'
+    }).state('contest', {
+      url: '/contest/:id',
+      templateUrl: '<%= asset_path("templates/games/contest.html") %>',
+      controller: 'contestController'
+    });
+  }
+]);

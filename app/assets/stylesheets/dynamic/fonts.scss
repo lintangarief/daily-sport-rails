@@ -1,0 +1,111 @@
+@font-face {
+    font-family: AROMA-Bold;
+    src: url(fonts/AROMA-Bold.ttf);
+}
+
+@font-face {
+    font-family: AROMA-Light;
+    src: url(fonts/AROMA-Light.ttf);
+}
+
+@font-face {
+    font-family: DejaVuSans-Bold;
+    src: url(fonts/DejaVuSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: DejaVuSans-BoldOblique;
+    src: url(fonts/DejaVuSans-BoldOblique.ttf);
+}
+
+@font-face {
+    font-family: DejaVuSans-ExtraLight;
+    src: url(fonts/DejaVuSans-ExtraLight.ttf);
+}
+
+@font-face {
+    font-family: DejaVuSans-Oblique;
+    src: url(fonts/DejaVuSans-Oblique.ttf);
+}
+
+@font-face {
+    font-family: DejaVuSans;
+    src: url(fonts/DejaVuSans.ttf);
+}
+
+@font-face {
+    font-family: DejaVuSansCondensed-Bold;
+    src: url(fonts/DejaVuSansCondensed-Bold.ttf);
+}
+
+@font-face {
+    font-family: DejaVuSansCondensed-BoldOblique;
+    src: url(fonts/DejaVuSansCondensed-BoldOblique.ttf);
+}
+
+@font-face {
+    font-family: DejaVuSansCondensed-Oblique;
+    src: url(fonts/DejaVuSansCondensed-Oblique.ttf);
+}
+
+@font-face {
+    font-family: DejaVuSansCondensed;
+    src: url(fonts/DejaVuSansCondensed.ttf);
+}
+
+@font-face {
+    font-family: Quicksand_Dash;
+    src: url(fonts/Quicksand_Dash.otf);
+}
+
+@font-face {
+    font-family: Quicksand-Bold;
+    src: url(fonts/Quicksand-Bold.otf);
+}
+
+@font-face {
+    font-family: Quicksand-BoldItalic;
+    src: url(fonts/Quicksand-BoldItalic.otf);
+}
+
+@font-face {
+    font-family: Quicksand-Italic;
+    src: url(fonts/Quicksand-Italic.otf);
+}
+
+@font-face {
+    font-family: Quicksand-Light;
+    src: url(fonts/Quicksand-Light.otf);
+}
+
+@font-face {
+    font-family: Quicksand-LightItalic;
+    src: url(fonts/Quicksand-LightItalic.otf);
+}
+
+@font-face {
+    font-family: Quicksand-Regular;
+    src: url(fonts/Quicksand-Regular.otf);
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+    color: #9199a1;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    text-align: center;
+    color: #9199a1;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    text-align: center;
+    color: #9199a1;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+    color: #9199a1;
+}

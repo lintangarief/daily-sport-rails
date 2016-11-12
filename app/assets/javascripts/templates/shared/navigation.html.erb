@@ -1,0 +1,45 @@
+<nav id="mainNav2" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="<%= root_path() %>">
+            <!-- UNCOMMENT THE CSS VALUES TO TEST OTHER DIMENTIONS -->
+            <!-- <img src="http://placehold.it/150x80&text=Logo" alt=""> -->
+            <img src="/assets/logo_new.png" class="image-responsive logo-header" alt="">
+          </a>
+      </div>
+      <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+              <li class="menu-left"><a href="#/lobby">LOBBY</a></li>
+              <li class="active menu-left"><a href="#/games" target="_blank">GAMES</a></li>
+               <li class="menu-left">
+                  <a href="/help">HELP</a>
+               </li>
+           </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown" ng-if="isLogin">
+                  <a class="dropdown-toggle" data-toggle="dropdown">
+                      <strong>{{userData.data.firstname + userData.data.lastName}}</strong>
+                  </a>
+                  <ul class="dropdown-menu account">
+                    <li>
+                      <a ui-sref="login"><img src="/assets/icon_myaccount.png" alt="" class="image-li"/>MY ACCOUNT</a>
+                    </li>
+                    <li>
+                      <a ng-click="logout()"><img src="/assets/icon_logout.png" alt="" class="image-li"/>LOGOUT</a>
+                    </li>
+                  </ul>
+              </li>
+              <li ng-if="!isLogin">
+                  <a ui-sref="login">
+                      <strong>Login</strong>
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>

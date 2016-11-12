@@ -1,0 +1,124 @@
+<div class="container-fluid main-container ng-scope" id="lobby">
+  <div class="container-fluid lobby no-padding no-margin box-content">
+    <div class="container container-1">
+        <div class="row row-1">
+          <table class="table-header visible-md visible-lg">
+            <tbody>
+              <tr>
+                <td>
+                  <br>
+                  <hr>
+                </td>
+                <td>
+                  <h1 class="orange-text text-center">LOBBY</h1>
+                </td>
+                <td>
+                  <br>
+                  <hr>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="width: 100%;" class="table-header mobile visible-xs visible-sm">
+            <tbody>
+              <tr>
+                <td>
+                  <h1 class="orange-text text-center">LOBBY</h1>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <div class="container container-2">
+      <div class="row">
+        <div class="col-md-4">
+          <a ng-click="filters.leagues_id = ''" class="btn btn-primary btn-all-outlet">ALL OUTLET</a>
+        </div>
+        <div class="col-md-4">
+          <a ng-click="filters.leagues_id = 1"><img src="/assets/button_barsclays_idle.png" alt="" class="lobby-img" height="90"/></a>
+        </div>
+        <div class="col-md-4">
+          <a ng-click="filters.leagues_id = 3"><img src="/assets/button_champions_idle.png" alt=""  class="lobby-img" height="90"/></a>
+        </div>
+      </div>
+    </div>
+    <div class="container container-3">
+      <div class="col-sm-12 trans-1">
+        <table class="mk-table-fixed mk-table-clickable table header-table">
+          <thead>
+            <tr>
+              <th>CONTEST</th>
+              <th>ENTRY SIZE</th>
+              <th>ENTRY FEE</th>
+              <th>SPONSOR</th>
+              <th>PRIZES</th>
+              <th>START DATE</th>
+              <th></th>
+            </tr>
+          </thead>
+        </table>
+        <div class="box-scroll">
+          <table class="mk-table-fixed mk-table-clickable table ng-isolate-scope" id="categories-table" st-table="categories" st-pagination-scroll="" st-pipe="loadCategories">
+            <tbody>
+              <tr ng-repeat="contest in contests.data.active_contests | filter:filters" ng-click="showContestModal(contest)">
+                <td>{{contest.contest_name}}</td>
+                <td>{{contest.entry_count}} / {{contest.entry_max}}</td>
+                <td>{{contest.entry_fee}}</td>
+                <td>LOGO</td>
+                <td>{{contest.prize}}</td>
+                <td>{{contest.start_date}}</td>
+                <td><a href="#"><img class="img-responsive" src="/assets/button_enter_idle.png" alt="" /></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Advanced Modal -->
+  <div id="modal-contest" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="advancedSort" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="col-md-6 col-xs-12">
+          <h4 class="text-left">{{contest.contest_name}}</h4>
+        </div>
+        <div class="col-md-6 col-xs-12">
+          <ul class="nav nav-pills">
+            <li class="active">
+              <a href="#date" data-toggle="pill">Date</a>
+            </li>
+            <li><a href="#relevance" data-toggle="pill">Relevance</a></li>
+            <li><a href="#dealership" data-toggle="pill">Dealership</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-6">
+          <div class="col-md-12">
+
+          </div>
+          <div class="clear-fix">
+
+          </div>
+          <div class="col-md-12">
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-md-12">
+
+          </div>
+          <div class="clear-fix">
+
+          </div>
+          <div class="col-md-12">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
