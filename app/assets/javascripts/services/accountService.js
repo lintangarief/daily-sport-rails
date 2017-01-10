@@ -190,16 +190,16 @@ dailyApp.factory("authenticationSvc", ["$http","$q","$window",function ($http, $
 
     function getContestDetail(token, ligaId, contestId){
       var deferred = $q.defer();
-      $http.get(urlBase + '/lobby/contestdetails/'+ ligaId + '/' + contestId)
-      .success(function (data, status, headers, config) {
-        if (data.error) {
+      $http.get(urlBase + '/lobby/contestdetails/'+ ligaId + '/' + contestId, {headers: {"Authorization": userInfo ? userInfo.token : ""}})
+        .success(function (data, status, headers, config) {
+          if (data.error) {
+            deferred.reject(data);
+          }
+          deferred.resolve(data);
+        })
+        .error(function (data, status, header, config) {
           deferred.reject(data);
-        }
-        deferred.resolve(data);
-      })
-      .error(function (data, status, header, config) {
-        deferred.reject(data);
-      });
+        });
       return deferred.promise;
     }
 

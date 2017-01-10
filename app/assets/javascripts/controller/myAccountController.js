@@ -3,7 +3,9 @@ var dailyApp = angular.module('daily');
 dailyApp.controller("myAccountController", ["$scope", "$rootScope", "$state", "$location", "$http", "$rootScope", "$window", "authenticationSvc", "$timeout",
  function ($scope, $rootScope, $state, $location, $http, $rootScope, $window, authenticationSvc, $timeout) {
     function init() {
-      $http.defaults.headers.common['Authorization'] = $scope.userData.token;
+      if (!$rootScope.userData.hasOwnProperty("token")) {
+        $state.go('login', {}, {reload: true});
+      }
       $scope.showMessage = false;
       getProfile();
     };

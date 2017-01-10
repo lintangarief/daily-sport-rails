@@ -66,7 +66,7 @@ dailyApp.factory("gameService", ["$http","$q","$window", "authenticationSvc",fun
 
     function getPlayers(idContest){
       var deferred = $q.defer();
-      $http.get(urlBase + '/lobby/players/' + idContest, {})
+      $http.get(urlBase + '/lobby/players/' + idContest, {headers: {"Authorization": userInfo ? userInfo.token : ""}})
       .success(function (data, status, headers, config) {
         if (data.error) {
           deferred.reject(data);
@@ -115,6 +115,24 @@ dailyApp.factory("gameService", ["$http","$q","$window", "authenticationSvc",fun
       return deferred.promise;
     }
 
+    function getChapcha(){
+      var deferred = $q.defer();
+      $http.get(urlBase + '/captcha', {headers: {"Authorization": userInfo ? userInfo.token : ""}})
+      .success(function (response, status, headers, config) {
+        if (response.error) {
+          deferred.reject(response);
+        }
+        if (userInfo) {
+          authenticationSvc.changeToken(response.data.token);
+        }
+        deferred.resolve(response.data);
+      })
+      .error(function (response, status, header, config) {
+        deferred.reject(response);
+      });
+      return deferred.promise;
+    }
+
     function init() {
         if ($window.sessionStorage["userInfo"]) {
           userInfo = JSON.parse($window.sessionStorage["userInfo"]);
@@ -128,6 +146,7 @@ dailyApp.factory("gameService", ["$http","$q","$window", "authenticationSvc",fun
       detailLobby: detailLobby,
       getPlayers: getPlayers,
       checkEnterContest: checkEnterContest,
-      getPlayerDetail: getPlayerDetail
+      getPlayerDetail: getPlayerDetail,
+      getChapcha: getChapcha
     };
 }]);

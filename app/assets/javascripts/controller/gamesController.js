@@ -4,9 +4,13 @@ dailyApp.controller('gamesController', ['$scope', '$state', '$rootScope', '$q', 
   function ($scope, $state, $rootScope, $q, $location, $window, gameService) {
     function init() {
       console.log("load gameContest");
+      if (!$rootScope.userData.hasOwnProperty("token")) {
+        $state.go('login', {}, {reload: true});
+      }
       $scope.filterContest();
       $scope.showNodata = true;
     }
+
 
     $scope.enterContest = function(ligaId, contestId) {
       gameService.checkEnterContest(contestId).then(function(result){

@@ -168,7 +168,6 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
     $scope.detailsPlayer = function(player){
       gameService.getPlayerDetail($scope.contest.contest_id, player.player_phase_id).then(function(result){
         $scope.player = result;
-        debugger;
         $('#modalPlayer').modal({ backdrop:'static',keyboard:false, show:true});
       }, function(e){
 
@@ -176,6 +175,13 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
     }
 
     $scope.draftTeamClick = function(){
+      var mp4 = document.getElementById("mp4");
+      mp4.setAttribute('src', 'http://api.dailysportboss.com/video/ads/mp4/' + $scope.contest.sponsors_id);
+      var webm = document.getElementById("webm");
+      webm.setAttribute('src', 'http://api.dailysportboss.com/video/ads/webm/' + $scope.contest.sponsors_id);
+      var ogv = document.getElementById("ogv");
+      ogv.setAttribute('src', 'http://api.dailysportboss.com/video/ads/ogv/' + $scope.contest.sponsors_id);
+
       $('#modalVideo').modal({ backdrop:'static',keyboard:false, show:true});
       $scope.videoOnEnded = false;
       var video = document.getElementById("video");
@@ -183,6 +189,10 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
       video.onended = function() {
         $scope.videoOnEnded = true;
       };
+      $scope.capcha  = ".....";
+      gameService.getChapcha().then(function(result){
+        $scope.capcha = result.randomword;
+      })
     }
 
     $scope.removePlayer = function(player_delete){
@@ -228,7 +238,6 @@ dailyApp.filter('customMatch', function() {
 });
 dailyApp.filter('', function () {
   return function () {
-    debugger
     return;
   };
 });
