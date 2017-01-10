@@ -33,7 +33,7 @@
     <div class="container container-2">
       <div class="row">
         <div class="col-md-4">
-          <a ng-click="filters.leagues_id = ''" class="btn btn-primary btn-all-outlet">ALL OUTLET</a>
+          <a ng-click="filters.leagues_id = ''" class="btn btn-primary btn-all-outlet">ALL CONTEST</a>
         </div>
         <div class="col-md-4">
           <a ng-click="filters.leagues_id = 1"><img src="/assets/button_barsclays_idle.png" alt="" class="lobby-img" height="90"/></a>
@@ -65,10 +65,19 @@
                 <td>{{contest.contest_name}}</td>
                 <td>{{contest.entry_count}} / {{contest.entry_max}}</td>
                 <td>{{contest.entry_fee}}</td>
-                <td>LOGO</td>
+                <td>
+                  <img src="{{contest.sponsorlogomobile}}" alt="sponsor contest" class="img-responsive img-sponsor visible-xs"/>
+                  <img src="{{contest.sponsorbannertablet}}" alt="sponsor contest" class="img-responsive img-sponsor visible-sm"/>
+                  <img src="{{contest.sponsorlogodesktop}}" alt="sponsor contest" class="img-responsive img-sponsor visible-md visible-lg"/>
+                </td>
                 <td>{{contest.prize}}</td>
                 <td>{{contest.start_date}}</td>
-                <td><a href="#"><img class="img-responsive" src="/assets/button_enter_idle.png" alt="" /></a></td>
+                <td><a ng-click="enterContest(contest.leagues_id, contest.contest_id, $event.stopPropagation())"><img class="img-responsive" src="/assets/button_enter_idle.png" alt="" /></a></td>
+              </tr>
+              <tr>
+                <td colspan="6" ng-if="contests.data.active_contests.length < 1">
+                  <h3 class="text-center">No data Contest</h3>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -81,40 +90,232 @@
     <div class="modal-dialog">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <div class="col-md-6 col-xs-12">
-          <h4 class="text-left">{{contest.contest_name}}</h4>
-        </div>
-        <div class="col-md-6 col-xs-12">
-          <ul class="nav nav-pills">
-            <li class="active">
-              <a href="#date" data-toggle="pill">Date</a>
-            </li>
-            <li><a href="#relevance" data-toggle="pill">Relevance</a></li>
-            <li><a href="#dealership" data-toggle="pill">Dealership</a></li>
-          </ul>
+        <div class="col-md-12 col-xs-12">
+          <h4 class="text-center">Contest Details</h4>
         </div>
       </div>
-      <div class="modal-body">
-        <div class="col-md-6">
-          <div class="col-md-12">
-
+      <div class="modal-body body-detail-contest">
+        <div class="col-md-12 first-content">
+          <div class="col-md-3">
+            <h3>{{contest.contest_name}}</h3>
           </div>
-          <div class="clear-fix">
-
-          </div>
-          <div class="col-md-12">
-
+          <div class="col-md-9">
+            <table width="100%" class="detail-contest">
+              <thead>
+                <tr>
+                  <td width="20%">
+                    Number Of Entries
+                  </td>
+                  <td width="20%">
+                    Prize for top 50
+                  </td>
+                  <td width="20%">
+                    Entry Fee
+                  </td>
+                  <td width="20%">
+                    Start Date
+                  </td>
+                  <td width="20%">
+                    Start Time
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {{contest.entry_count}} / {{contest.entry_max}}
+                  </td>
+                  <td>
+                    {{contest.prize}}
+                  </td>
+                  <td>
+                    {{contest.entry_fee}}
+                  </td>
+                  <td>
+                    {{contest.start_date}}
+                  </td>
+                  <td>
+                    {{contest.start_time}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="col-md-12">
-
-          </div>
-          <div class="clear-fix">
-
-          </div>
-          <div class="col-md-12">
-
+        <div class="col-md-12 second-content">
+          <h4 class="text-center">Pick a team {{events.data.length}} Player from the following games :</h4>
+        </div>
+        <div class="col-md-12 third-content">
+          <ul>
+            <li ng-repeat="event in events.data" width="20%">
+              <table>
+                <tr>
+                  <td>
+                    {{event.team_name_home}} @ {{event.team_name_away}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    {{event.start_date}}
+                  </td>
+                  <td>
+                    {{event.start_time}}
+                  </td>
+                </tr>
+              </table>
+            </li>
+          </ul>
+          <div class="col-md-12 box-first">
+            <div class="col-md-6 box-scoring">
+              <table width="100%">
+                <thead>
+                  <th colspan="2" class="text-center">
+                    Scoring
+                  </th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-left">
+                      GOAL
+                    </td>
+                    <td class="text-right">
+                      5 Pts
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      ASSIST
+                    </td>
+                    <td class="text-right">
+                      4 Pts
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      COMPLETE KY PASSES
+                    </td>
+                    <td class="text-right">
+                      1 pts
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      TACKLE
+                    </td>
+                    <td class="text-right">
+                      0.4 Pts
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      INTERCEPTION
+                    </td>
+                    <td class="text-right">
+                      0.4 pts
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      CLEARANCE
+                    </td>
+                    <td class="text-right">
+                      0.5 Pts
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      COMPLETE PASSES
+                    </td>
+                    <td class="text-right">
+                      0.02 Pts
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      CROSSES
+                    </td>
+                    <td class="text-right">
+                      0.4 Pts
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      COMPLETE CROSES
+                    </td>
+                    <td class="text-right">
+                      1 Pts
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table width="100%">
+                <thead>
+                  <th colspan="2" class="text-center">
+                    Scoring
+                  </th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-left">
+                      1st
+                    </td>
+                    <td class="text-right">
+                      40% of Prize Pool
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      2nd
+                    </td>
+                    <td class="text-right">
+                      20% of Prize Pool
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      3rd
+                    </td>
+                    <td class="text-right">
+                      15% of Prize Pool
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      4th - 13th
+                    </td>
+                    <td class="text-right">
+                      0.1% Prize Pool Per Person
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      14th - 25th
+                    </td>
+                    <td class="text-right">
+                      0.068% Prize Pool Per Person
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      26th - 37th
+                    </td>
+                    <td class="text-right">
+                      0.041% Prize Pool Per Person
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      38th - 50th
+                    </td>
+                    <td class="text-right">
+                      0.015% Prize Pool Per Person
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

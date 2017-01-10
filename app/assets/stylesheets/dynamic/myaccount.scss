@@ -1,0 +1,86 @@
+div#myaccount{
+  .container-fluid.box-content {
+    background: rgba(0,37,44,0.7);
+    min-height: inherit;
+    .container.container-1{
+      .table-header { width: 100%; font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; font-weight: bold; }
+      .table-header tbody { width: 100%; display: flex; }
+      .table-header tr { width: 100%; display: flex; }
+      .table-header td:first-child, .table-header td:last-child { width: 37%; }
+      .table-header td:nth-child(2) { width: 37%; }
+      .table-header.mobile td:first-child { width: 100%; }
+      .table-header td:nth-child(2) h1 { font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; font-weight: bold; }
+      .row.row-1 {padding-left: 35px; padding-right: 50px; background: #06343c; color: white; text-align: center; font-family: "Century Gothic"; }
+      .container::before,.container::after,.row::before,.row::after { display: table; content: " "; }
+    }
+
+    .container.container-2 {
+      background: #00252C;
+      .col-1{
+        padding: 10px;
+        .btn.btn-lg.btn-100{
+          width: 100%;
+          background: #051719;
+          padding: 20px;
+          border-radius: 15px;
+          color: #FBB03B;
+          font-size: 30px;
+        }
+      }
+    }
+    .container.container-3 {
+      background: #00252C;
+      padding-bottom: 50px;
+      .box-profile{
+        .header-panel{
+          background: #06343C;
+          padding: 10px;
+          border-top: 1px solid #145A66;
+          border-left: 1px solid #145A66;
+          border-right: 1px solid #145A66;
+        }
+      }
+      .profile-data{
+        border-left: 1px solid #145A66;
+        border-right: 1px solid #145A66;
+        border-bottom: 1px solid #145A66;
+        padding: 50px 10px;
+        .input-form{
+          padding: 15px;
+          .form-group{
+            display: flex;
+            padding: 0px;
+            border-bottom: 1px solid #145A66;
+            padding-bottom: 5px;
+            label{
+              padding: 0px;
+              text-align: left;
+            }
+            input{
+              background: none;
+              border: none;
+              text-align: right;
+              text-align-last: right;
+              outline: none;
+              box-shadow: none;
+              color: #FBB03B;
+            }
+          }
+          .form-group.check-form{
+            padding-left: 20px;
+            div.checkbox{
+              margin: 7px;
+            }
+          }
+          .form-group.box-submit {
+            display: block;
+            border: none;
+            button{
+              float: right;
+            }
+          }
+        }
+      }
+    }
+  }
+}

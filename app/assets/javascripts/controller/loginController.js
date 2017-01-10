@@ -8,7 +8,8 @@ dailyApp.controller("loginController", ["$scope", '$rootScope', "$state", "$loca
         return false;
       }else{
         authenticationSvc.login(params.username, params.password).then(function (result) {
-          $scope.userInfo = result;
+          $rootScope.userData = result;
+          $rootScope.isLogin = true;
           $state.go('lobby');
         }, function (data) {
           $scope.errorMessage = data.error.message;

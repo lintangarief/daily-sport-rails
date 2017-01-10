@@ -1,14 +1,17 @@
 var dailyApp = angular.module('daily');
 
-dailyApp.factory("gameService", ["$http","$q","$window",function ($http, $q, $window) {
+dailyApp.factory("gameService", ["$http","$q","$window", "authenticationSvc",function ($http, $q, $window, authenticationSvc) {
     var userInfo;
     var urlBase = 'http://localhost/fantasygame';
     function getContests(id) {
       var deferred = $q.defer();
-      $http.get(urlBase + '/reset/form/'+ token, {})
+      $http.get(urlBase + '/lobby/contests', {headers: {"Authorization": userInfo ? userInfo.token : ""}})
       .success(function (data, status, headers, config) {
         if (data.error) {
           deferred.reject(data);
+        }
+        if (userInfo) {
+          authenticationSvc.changeToken(data.token);
         }
         deferred.resolve(data);
       })
@@ -18,7 +21,25 @@ dailyApp.factory("gameService", ["$http","$q","$window",function ($http, $q, $wi
       return deferred.promise;
     }
 
-    function detailLobby(params){
+    function getContestEvent(id) {
+      var deferred = $q.defer();
+      $http.get(urlBase + '/lobby/events/' + id, {headers: {"Authorization": userInfo ? userInfo.token : ""}})
+      .success(function (data, status, headers, config) {
+        if (data.error) {
+          deferred.reject(data);
+        }
+        if (userInfo) {
+          authenticationSvc.changeToken(data.token);
+        }
+        deferred.resolve(data);
+      })
+      .error(function (data, status, header, config) {
+        deferred.reject(data);
+      });
+      return deferred.promise;
+    }
+
+    function detailLobby(params) {
       var deferred = $q.defer();
       $http({
           method: 'POST',
@@ -43,6 +64,56 @@ dailyApp.factory("gameService", ["$http","$q","$window",function ($http, $q, $wi
       return deferred.promise;
     }
 
+    function getPlayers(idContest){
+      var deferred = $q.defer();
+      $http.get(urlBase + '/lobby/players/' + idContest, {})
+      .success(function (data, status, headers, config) {
+        if (data.error) {
+          deferred.reject(data);
+        }
+        if (userInfo) {
+          authenticationSvc.changeToken(data.token);
+        }
+        deferred.resolve(data);
+      })
+      .error(function (data, status, header, config) {
+        deferred.reject(data);
+      });
+      return deferred.promise;
+    }
+
+    function getPlayerDetail(contestId, playerId){
+      var deferred = $q.defer();
+      $http.get(urlBase + '/lobby/playerdetail/'+ contestId + '/' + playerId, {})
+      .success(function (result, status, headers, config) {
+        if (result.error) {
+          deferred.reject(result.data);
+        }
+        deferred.resolve(result.data);
+      })
+      .error(function (data, status, header, config) {
+        deferred.reject(data);
+      });
+      return deferred.promise;
+    }
+
+    function checkEnterContest(idContest){
+      var deferred = $q.defer();
+      $http.get(urlBase + '/lobby/join/' + idContest, {headers: {"Authorization": userInfo ? userInfo.token : ""}})
+      .success(function (data, status, headers, config) {
+        if (data.error) {
+          deferred.reject(data);
+        }
+        if (userInfo) {
+          authenticationSvc.changeToken(data.token);
+        }
+        deferred.resolve(data);
+      })
+      .error(function (data, status, header, config) {
+        deferred.reject(data);
+      });
+      return deferred.promise;
+    }
 
     function init() {
         if ($window.sessionStorage["userInfo"]) {
@@ -53,6 +124,10 @@ dailyApp.factory("gameService", ["$http","$q","$window",function ($http, $q, $wi
 
     return {
       getContests: getContests,
-      detailLobby: detailLobby
+      getContestEvent: getContestEvent,
+      detailLobby: detailLobby,
+      getPlayers: getPlayers,
+      checkEnterContest: checkEnterContest,
+      getPlayerDetail: getPlayerDetail
     };
 }]);

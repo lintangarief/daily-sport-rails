@@ -3,7 +3,13 @@ var dailyApp = angular.module('daily');
 dailyApp.factory("authenticationSvc", ["$http","$q","$window",function ($http, $q, $window) {
     var userInfo;
     var urlBase = 'http://localhost/fantasygame';
-    
+
+    function changeToken(token){
+      var userData = JSON.parse($window.sessionStorage["userInfo"]);
+      userData.token = token;
+      $window.sessionStorage["userInfo"] = JSON.stringify(userData);
+    }
+
     function login(userName, password) {
       var deferred = $q.defer();
       $http({
@@ -28,6 +34,7 @@ dailyApp.factory("authenticationSvc", ["$http","$q","$window",function ($http, $
             token: data.token,
             data: data.data
         };
+        console.log(data.token)
         $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
         deferred.resolve(userInfo);
       })
@@ -165,6 +172,62 @@ dailyApp.factory("authenticationSvc", ["$http","$q","$window",function ($http, $
       return deferred.promise;
     }
 
+    function getProfile(token){
+      var deferred = $q.defer();
+      console.log(token)
+      $http.get(urlBase + '/users', { headers: {'Authorization': token}})
+      .success(function (data, status, headers, config) {
+        if (data.error) {
+          deferred.reject(data);
+        }
+        deferred.resolve(data);
+      })
+      .error(function (data, status, header, config) {
+        deferred.reject(data);
+      });
+      return deferred.promise;
+    }
+
+    function getContestDetail(token, ligaId, contestId){
+      var deferred = $q.defer();
+      $http.get(urlBase + '/lobby/contestdetails/'+ ligaId + '/' + contestId)
+      .success(function (data, status, headers, config) {
+        if (data.error) {
+          deferred.reject(data);
+        }
+        deferred.resolve(data);
+      })
+      .error(function (data, status, header, config) {
+        deferred.reject(data);
+      });
+      return deferred.promise;
+    }
+
+    function editProfile(token, user){
+      var deferred = $q.defer();
+      $http({
+          method: 'POST',
+          url: urlBase + '/users/edit',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': token},
+          transformRequest: function(obj) {
+              var str = [];
+              for(var p in obj)
+              str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+              return str.join("&");
+          },
+          data: user
+      }).success(function (data, status, headers, config) {
+        if (data.error) {
+          deferred.reject(data);
+        }
+        deferred.resolve(data);
+      })
+      .error(function (data, status, header, config) {
+        deferred.reject(data);
+      });
+      return deferred.promise;
+    }
+
     function init() {
         if ($window.sessionStorage["userInfo"]) {
           userInfo = JSON.parse($window.sessionStorage["userInfo"]);
@@ -180,6 +243,10 @@ dailyApp.factory("authenticationSvc", ["$http","$q","$window",function ($http, $
         resetPassword: resetPassword,
         activationUser: activationUser,
         getUserInfo: getUserInfo,
-        validationTokenResetPassword: validationTokenResetPassword
+        validationTokenResetPassword: validationTokenResetPassword,
+        changeToken: changeToken,
+        getProfile: getProfile,
+        getContestDetail: getContestDetail,
+        editProfile: editProfile
     };
 }]);

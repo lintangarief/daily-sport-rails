@@ -1,8 +1,15 @@
-var dailyApp = angular.module('daily', ['ui.router', 'ui.bootstrap']);
+var dailyApp = angular.module('daily', ['ui.router', 'ui.bootstrap', 'angularMoment', 'angularCountdownTimer']);
 
 dailyApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
   function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/account');
+    $httpProvider.defaults.headers.common = {};
+    $httpProvider.defaults.headers.post = {};
+    $httpProvider.defaults.headers.put = {};
+    $httpProvider.defaults.headers.patch = {};
+    $httpProvider.defaults.headers.get = {};
+    $httpProvider.defaults.useXDomain = true;
+
     $stateProvider.state('account', {
       url: '/account',
     }).state('login', {
@@ -37,6 +44,18 @@ dailyApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
       url: '/lobby',
       templateUrl: '<%= asset_path("templates/games/lobby.html") %>',
       controller: 'lobbyController'
+    }).state('games', {
+      url: '/games',
+      templateUrl: '<%= asset_path("templates/games/games.html") %>',
+      controller: 'gamesController'
+    }).state('draft_contest', {
+      url: '/lobby/:ligaId/contests/:contestId/draft',
+      templateUrl: '<%= asset_path("templates/games/contest.html") %>',
+      controller: 'draftContestController'
+    }).state('myaccount', {
+      url: '/myaccount',
+      templateUrl: '<%= asset_path("templates/account/myaccount.html") %>',
+      controller: 'myAccountController'
     }).state('contest', {
       url: '/contest/:id',
       templateUrl: '<%= asset_path("templates/games/contest.html") %>',

@@ -1,9 +1,9 @@
 var dailyApp = angular.module('daily');
 
-dailyApp.controller('lobbyController', ['$scope', '$state', '$rootScope', '$q', '$location', '$window', 'gameService',
+dailyApp.controller('gamesController', ['$scope', '$state', '$rootScope', '$q', '$location', '$window', 'gameService',
   function ($scope, $state, $rootScope, $q, $location, $window, gameService) {
     function init() {
-      console.log("load lobbyController");
+      console.log("load gameContest");
       $scope.filterContest();
       $scope.showNodata = true;
     }

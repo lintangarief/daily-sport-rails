@@ -1,0 +1,350 @@
+div#teamdraft{
+  .container-fluid.main-container {
+    min-height: calc(100vh - 75px);
+    background-image: url(/assets/background-home-section-1.gif);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    text-align: center;
+    color: white;
+    height: 100%;
+    background-size: cover;
+    padding: 0px;
+  }
+  .container-fluid.box-content{
+    background: rgba(0,37,44,0.7);
+    min-height: inherit;
+    .container.container-1{
+      .table-header { width: 100%; font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; font-weight: bold; }
+      .table-header tbody { width: 100%; display: flex; }
+      .table-header tr { width: 100%; display: flex; }
+      .table-header td:first-child, .table-header td:last-child { width: 37%; }
+      .table-header td:nth-child(2) { width: 37%; }
+      .table-header.mobile td:first-child { width: 100%; }
+      .table-header td:nth-child(2) h1 { font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; font-weight: bold; }
+      .row.row-1 {padding-left: 35px; padding-right: 50px; background: #06343c; color: white; text-align: center; font-family: "Century Gothic"; }
+      .container::before,.container::after,.row::before,.row::after { display: table; content: " "; }
+    }
+    .container.container-2{
+      background: #00252C;
+      padding: 20px 20px;
+      div.entry-contest{
+        background: #094E5A;
+        border-radius: 15px;
+        padding: 10px;
+        h3{
+          font-size: 30px;
+        }
+        .entry-box{
+          padding: 0px;
+        }
+        .size-box{
+          line-height: 2.5;
+          text-align: left;
+          background: #051719;
+          margin-bottom: 5px;
+        }
+        .number-box{
+          line-height: 2.5;
+          text-align: left;
+          background: #051719;
+          margin-top: 5px;
+        }
+      }
+      .sponsor-box{
+        padding-right: 0px;
+      }
+    }
+    .container.container-3 {
+      background: #00252C;
+      padding: 5px 20px;
+      .box-input-section {
+        .box-input{
+          padding: 0;
+          input.player_name {
+            padding: 0px;
+            width: 100%;
+            text-align-last: right;
+            padding-right: 5px;
+          }
+        }
+        select{
+          color: black;
+          width: 100%;
+          text-align-last: center;
+        }
+      }
+      .box-timer{
+        h3{
+          margin: 0px;
+        }
+      }
+    }
+    .container.container-4{
+      background: #00252C;
+      padding: 20px 20px;
+      .box-selected-header{
+        line-height: 3;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        background: #06343C;
+        border-left: 1px solid #00252C;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 0px;
+        a{
+          color: white;
+          display: block;
+          text-decoration: none;
+        }
+        a:hover{
+          color: #FF931E;
+        }
+        a.active{
+          display: block;
+          border-bottom: 2px solid #FF931E;
+          margin-bottom: -2px;
+        }
+      }
+      .block-roster{
+        line-height: 3;
+        background: #094E5A;
+      }
+      .block-roster2{
+        line-height: 2.6;
+        background: #094E5A;
+        padding: 0;
+        input{
+          width: 100%;
+          float: right;
+          margin-left: 10px;
+          text-align-last: right;
+          padding-right: 5px;
+        }
+      }
+      table.players{
+        display: inline-block;
+        height: 400px;
+        overflow: auto;
+        tbody{
+          th{
+            width: 20%;
+            vertical-align: middle;
+            background: #094E5A;
+          }
+          td{
+            width: 20%;
+            vertical-align: middle;
+            color: #F2F2F2;
+            font-weight: 600;
+            border-top: 1px solid #145A66;
+          }
+          td.text-orange-avarage{
+            color: #FF931E;
+          }
+          tr.data-player:hover{
+            background: #06343C;
+          }
+        }
+      }
+      table.table-selected-player{
+        display: inline-block;
+        height: 400px;
+        overflow: auto;
+        tbody{
+          tr{
+            th:first-child{
+              width: 40%;
+            }
+            th:last-child{
+              width: 50%;
+            }
+            th{
+              vertical-align: middle;
+            }
+            td{
+              width: 20%;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+      .salary-rem{
+        float: right;
+      }
+      .btn-float-right{
+        float: right;
+      }
+      .btn-submit-draft{
+        background: #005A6A;
+        border: 4px solid #073A43;
+      }
+    }
+  }
+}
+#modalPlayer{
+  .player-modal-body, .player-modal-footer{
+    padding: 0px;
+    background: #06343C;
+    color: white;
+  }
+  .modal-header{
+    border-color: #008CA7;
+    padding: 10px;
+  }
+  .modal-footer{
+    border: none;
+  }
+  .modal-dialog{
+    width: 70%;
+    margin-top: 6%;
+    #table-details-status{
+      border: #008CA7 1px solid;
+      tbody, thead{
+        border: #008CA7 1px solid;
+      }
+      tr, td, th{
+        border: #008CA7 1px solid;
+      }
+      tfoot{
+        border: none;
+      }
+    }
+    .table-player-status{
+      thead{
+        background: #004653;
+      }
+      tbody{
+        background: #00252C;
+      }
+      tr, td, th{
+        border: #008CA7 1px solid;
+      }
+    }
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: #051719;
+    }
+    #btn-close-player{
+      margin: 0 auto;
+      display: block;
+      margin-bottom: 18px;
+    }
+    .detail-profile {
+      margin: 20px 0px 20px 0px;
+      .player-name{
+        background: #00252C;
+        padding: 10px;
+      }
+      .detail{
+        padding:5px 5px;
+      }
+    }
+    h3{
+      margin-top: 0px
+    }
+    .border-list-player{
+      display: flex;
+      border-bottom: 1px solid #094E5A;
+      padding: 8px 0px;
+    }
+    .detail-height, .detail-weight{
+      width: 50%;
+    }
+    .detail-height{
+      float: left;
+      border-right: 1px solid #094E5A;
+    }
+    .detail-weight{
+      padding-left: 10px;
+      float: right;
+    }
+    .player-detail-name{
+      color:#FBB03B;
+      padding: 10px;
+      border-bottom: 1px solid #F2F2F2;
+    }
+    .modal-title{
+      font-size: 1.7em;
+    }
+  }
+}
+
+#modalVideo{
+  video::-webkit-media-controls {
+    display: none;
+  }
+  .tp-video-pause-button {display: none !important}
+
+  div#inputCode {
+    float: none;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px 20px;
+    display: table;
+    border: 2px solid #094D5A;
+    border-radius: 10px;
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: #08434F;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: #08434F;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: #08434F;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+      color: #08434F;
+    }
+    input.contest-code {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border-radius: 9px;
+      margin-bottom: 15px;
+      background: #00181D;
+      outline: none;
+      border: 1px solid #094D5A;
+      color: #08434F;
+    }
+    button.btn.btn-primary.green-btn {
+      width: 100px;
+      background: #005C6C;
+      border: 1px solid #073A43;
+      outline: none;
+    }
+    .green-btn.submitCode{
+      float: left;
+    }
+    .green-btn.rewatch{
+      float: right;
+    }
+  }
+  .modal-dialog{
+    margin-top: 10%;
+
+    .modal-content{
+      background: transparent;
+    }
+    .modal-body{
+      padding: 0px;
+      background: #00252C;
+      display: table;
+      width: 100%;
+    }
+    .modal-header{
+      background: #094E5A;
+      padding: 5px;
+      border-bottom: 2px solid #008EA7;
+    }
+    .modal-header.code{
+      color: white;
+      float: none;
+      margin: 0 auto;
+      border-radius: 25px;
+      background: #00252C;
+      border: 1px solid #094D5A;
+      padding: 10px;
+    }
+  }
+}

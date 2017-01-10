@@ -1,4 +1,4 @@
-<div class="container main-container ng-scope" id="lobby">
+<div class="container-fluid main-container ng-scope" id="teamdraft">
   <div class="container-fluid lobby no-padding no-margin box-content">
     <div class="container container-1">
         <div class="row row-1">
@@ -30,276 +30,280 @@
           </table>
         </div>
     </div>
-    <div class="row ">
-        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-                <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12  ">Entry Size: xx / xxx</div>
-                <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12  ">Number of Entry: xx /xxx</div>
-            </div>
-            <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-                <h3>Rp. 10.000.000,-</h3>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <img class="image " src="http://lorempixel.com/g/400/200/people" alt="placeholder image" height="200" width="400">
-        </div>
+    <div class="container container-2">
+      <div class="row ">
+          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6 entry-contest">
+              <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6 entry-box">
+                  <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12 size-box">Entry Size: {{contest.entry_count}} / {{contest.entry_max}} Max</div>
+                  <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12 number-box">Number of Entry: {{contest.user_entry_count}} / {{contest.entry_max_register}} Max</div>
+              </div>
+              <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6 prize-box">
+                  <h3>{{contest.prize}}</h3>
+              </div>
+          </div>
+          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6 sponsor-box">
+              <img class="image visible-xs" src="{{contest.sponsorbannermobile}}" alt="placeholder image" height="100px" width="100%">
+              <img class="image visible-sm" src="{{contest.sponsorbannertablet}}" alt="placeholder image" height="100px" width="100%">
+              <img class="image visible-md visible-lg" src="{{contest.sponsorbannerdesktop}}" alt="placeholder image" height="100px" width="100%">
+          </div>
+      </div>
     </div>
-    <div class="row ">
-        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-                <input type="text" class="input-small" placeholder="insert player name">
-            </div>
-            <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-                <h3>man united vs totenham</h3>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <h3>01:01:01</h3>
-        </div>
+    <div class="container container-3">
+      <div class="row ">
+          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6 box-input-section">
+              <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6 box-input">
+                  <input type="text" class="input-small player_name" placeholder="insert player name" ng-model="player_name">
+              </div>
+              <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
+                <select ng-model="selectedEventId" class="form-control">
+                  <option value="[0,0]" selected="selected">All Match</option>
+                  <option ng-repeat="option in events" ng-value="[option.team_name_home, option.team_name_away]">
+                    {{option.team_full_home.toUpperCase() + ' vs ' + option.team_full_away.toUpperCase()}}
+                  </option>
+                </select>
+              </div>
+          </div>
+          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6 box-timer" ng-if="timeshow">
+              <h3>{{timeContest}}
+              </h3>
+          </div>
+      </div>
     </div>
-    <div class="row ">
-        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <div class="col-md-3 col-xs-12 col-lg-3">ALL</div>
-            <div class="col-md-3 col-xs-12 col-lg-3">FORWARD</div>
-            <div class="col-md-3 col-xs-12 col-lg-3">MIDDLE</div>
-            <div class="col-md-3 col-xs-12 col-lg-3">DEFENDER</div>
-            <table class="table table-striped ">
-                <tbody>
-                    <tr>
-                        <th>header 1</th>
-                        <th>header 2</th>
-                        <th>header 3</th>
-                        <th>header 4</th>
-                        <th>header 5</th>
-                    </tr>
-                    <tr>
-                        <td>row 1,col 1</td>
-                        <td>row 1,col 2</td>
-                        <td>row 1,col 3</td>
-                        <td>row 1,col 4</td>
-                        <td>row 1,col 5</td>
-                    </tr>
-                    <tr>
-                        <td>row 2,col 1</td>
-                        <td>row 2,col 2</td>
-                        <td>row 2,col 3</td>
-                        <td>row 2,col 4</td>
-                        <td>row 2,col 5</td>
-                    </tr>
-                    <tr>
-                        <td>row 3,col 1</td>
-                        <td>row 3,col 2</td>
-                        <td>row 3,col 3</td>
-                        <td>row 3,col 4</td>
-                        <td>row 3,col 5</td>
-                    </tr>
-                    <tr>
-                        <td>row 4,col 1</td>
-                        <td>row 4,col 2</td>
-                        <td>row 4,col 3</td>
-                        <td>row 4,col 4</td>
-                        <td>row 4,col 5</td>
-                    </tr>
-                    <tr>
-                        <td>row 5,col 1</td>
-                        <td>row 5,col 2</td>
-                        <td>row 5,col 3</td>
-                        <td>row 5,col 4</td>
-                        <td>row 5,col 5</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <div class="col-md-3 col-xs-12 col-lg-3  ">ROSTER NAME</div>
-            <div class="col-md-9 col-xs-12 col-sm-12 col-lg-9  ">
-                <input type="text" class="input-small">
-            </div>
-            <table class="table table-bordered  table-striped ">
-                <tbody>
-                    <tr>
-                        <th>header 1</th>
-                        <th>header 2</th>
-                        <th>header 3</th>
-                        <th>header 4</th>
-                    </tr>
-                    <tr>
-                        <td>row 1,col 1</td>
-                        <td>row 1,col 2</td>
-                        <td>row 1,col 3</td>
-                        <td>row 1,col 4</td>
-                    </tr>
-                    <tr>
-                        <td>row 2,col 1</td>
-                        <td>row 2,col 2</td>
-                        <td>row 2,col 3</td>
-                        <td>row 2,col 4</td>
-                    </tr>
-                    <tr>
-                        <td>row 3,col 1</td>
-                        <td>row 3,col 2</td>
-                        <td>row 3,col 3</td>
-                        <td>row 3,col 4</td>
-                    </tr>
-                    <tr>
-                        <td>row 4,col 1</td>
-                        <td>row 4,col 2</td>
-                        <td>row 4,col 3</td>
-                        <td>row 4,col 4</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row ">
-        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <button class="btn">Export</button>
-        </div>
-        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
-            <button class="btn">DRAFT TEAM</button>
-        </div>
+    <div class="container container-4">
+      <div class="row">
+          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
+              <div class="col-md-3 col-xs-12 col-lg-3 box-selected-header"><a ng-click="filters.pos = '';activeMenu = 'all'" ng-class="{active : activeMenu === 'all'}">ALL</a></div>
+              <div class="col-md-3 col-xs-12 col-lg-3 box-selected-header"><a ng-click="filters.pos = 'forward';activeMenu = 'forward'" ng-class="{active : activeMenu === 'forward'}">FORWARD</a></div>
+              <div class="col-md-3 col-xs-12 col-lg-3 box-selected-header"><a ng-click="filters.pos = 'midfielder';activeMenu = 'midfielder'" ng-class="{active : activeMenu === 'midfielder'}">MIDDLE</a></div>
+              <div class="col-md-3 col-xs-12 col-lg-3 box-selected-header"><a ng-click="filters.pos = 'defender';activeMenu = 'defender'" ng-class="{active : activeMenu === 'defender'}">DEFENDER</a></div>
+              <table class="table players m">
+                  <tbody>
+                      <tr>
+                          <th class="text-center" ng-click="orderByFilter('first_name', 'last_name')">
+                            PLAYER STATUS
+                            <br/>
+                            POSITION
+                          </th>
+                          <th class="text-center" ng-click="orderByFilter('team_name')">OPPONENT</th>
+                          <th class="text-center" ng-click="orderByFilter('fp_avg')">AVARAGE FORM</th>
+                          <th class="text-center" ng-click="orderByFilter('fp_form')">FORM</th>
+                          <th class="text-center" ng-click="orderByFilter('salary')">SALARY</th>
+                          <th class="text-center"></th>
+                      </tr>
+                      <tr ng-repeat="player in (filteredPlayers = (players | customMatch:selectedEventId | filter:filters | filter:player_name | orderBy:orderByStatus:reverse))" class="data-player" ng-click="detailsPlayer(player)">
+                          <td>{{player.first_name}} {{player.last_name}}
+                            <br/>
+                            {{player.pos.slice(0, 3).toUpperCase()}} - {{player.opp_team_shorthand.toUpperCase()}}
+                          </td>
+                          <td>{{player.team_name}}</td>
+                          <td class="text-orange-avarage">{{player.fp_avg}}</td>
+                          <td>{{player.fp_form}}</td>
+                          <td>{{player.salary}}</td>
+                          <td><i class="glyphicon glyphicon-plus" aria-hidden="true" ng-click="selectPlayer(player, $event.stopPropagation());"></i></td>
+                      </tr>
+                      <tr>
+                          <td colspan="5" class="text-center" ng-if="!players.length">
+                            NO PLAYERS DATA
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
+              <div class="col-md-3 col-xs-12 col-lg-3 block-roster">ROSTER NAME</div>
+              <div class="col-md-9 col-xs-12 col-sm-12 col-lg-9 block-roster2">
+                  <input type="text" class="input-small" placeholder="Insert Team Name">
+              </div>
+              <table class="table table-bordered table-selected-player">
+                  <tbody>
+                      <tr>
+                          <th colspan="2">YOUR TEAM</th>
+                          <th colspan="4">SALARY REM &nbsp; <input type="text" class="input-small salary-rem text-right" ng-model="salery_rem" disabled></th>
+                      </tr>
+                      <tr ng-repeat="player in players_select | orderBy:'pos'">
+                          <td>{{player.first_name}} {{player.last_name}}
+                            <br/>
+                            {{player.pos.slice(0, 3).toUpperCase()}} - {{player.opp_team_shorthand.toUpperCase()}}
+                          </td>
+                          <td>{{player.team_name}}</td>
+                          <td class="text-orange-avarage">{{player.fp_avg}}</td>
+                          <td>{{player.fp_form}}</td>
+                          <td>{{player.salary}}</td>
+                          <td><i class="fa fa-times" aria-hidden="true" ng-click="removePlayer(player)"></i></td>
+                      </tr>
+                      <tr>
+                          <td colspan="5" class="text-center" ng-if="!players_select.length">
+                            NO PLAYERS SELECTED
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      <div class="row ">
+          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
+            <a href='' ng-click='downloadCSV({ filename: "players-data.csv", data:filteredPlayers });'class="btn btn-float-right btn-submit-draft">EXPORT</a>
+          </div>
+          <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
+              <button class="btn btn-float-right btn-submit-draft" ng-click="draftTeamClick()">DRAFT TEAM</button>
+          </div>
+      </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="detailsUser" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="contestInfoBox" id="contestInfoBox" style="display: block;">
-                <div class="contestInfoBoxContainer">
-                    <div class="contestInfo">
-                        <div class="contestInfoName">EPL Bonkers</div>
-                        <div class="contestInfoDetails">
-                            <div>18:30:00</div>
-                            <div class="contestInfoDetails2">Start Time</div>
-                        </div>
-                        <div class="contestInfoDetails">
-                            <div>2016-10-29</div>
-                            <div class="contestInfoDetails2">Start Date</div>
-                        </div>
-                        <div class="contestInfoDetails">
-                            <div>RP 10,000,000*</div>
-                            <div class="contestInfoDetails2">Prizes</div>
-                        </div>
-                        <div class="contestInfoDetails">
-                            <div>FREE</div>
-                            <div class="contestInfoDetails2">Entry Fee</div>
-                        </div>
-                        <div class="contestInfoDetails">
-                            <div>0 / 1000</div>
-                            <div class="contestInfoDetails2">Prizes for top 50</div>
-                        </div>
-                        <div class="contestInfoDetails">
-                            <div>0</div>
-                            <div class="contestInfoDetails2">Number of Entries</div>
-                        </div>
-                        <div class="contestInfoLast"></div>
-                    </div>
-                    <div class="mainmediabox">
-                        <div class="mediabox1">
-                            <div class="inputHeading"><b>Pick a team of 10 players from the following games:</b></div>
-                            <div class="games">
-                                <div class="gameLast"></div>
-                                <div class="game">
-                                    <div>SUN</div>
-                                    <div>@ ARS</div>
-                                    <div>2016-10-29 18:30:00</div>
-                                </div>
-                                <div class="game">
-                                    <div>MID</div>
-                                    <div>@ BOU</div>
-                                    <div>2016-10-29 21:00:00</div>
-                                </div>
-                                <div class="game">
-                                    <div>MUN</div>
-                                    <div>@ BUR</div>
-                                    <div>2016-10-29 21:00:00</div>
-                                </div>
-                                <div class="game">
-                                    <div>WAT</div>
-                                    <div>@ HUL</div>
-                                    <div>2016-10-29 21:00:00</div>
-                                </div>
-                                <div class="game">
-                                    <div>TOT</div>
-                                    <div>@ LEI</div>
-                                    <div>2016-10-29 21:00:00</div>
-                                </div>
-                                <div class="game">
-                                    <div>WBA</div>
-                                    <div>@ MCI</div>
-                                    <div>2016-10-29 21:00:00</div>
-                                </div>
-                                <div class="game">
-                                    <div>SOU</div>
-                                    <div>@ CHE</div>
-                                    <div>2016-10-29 23:00:00</div>
-                                </div>
-                                <div class="game">
-                                    <div>CRY</div>
-                                    <div>@ LIV</div>
-                                    <div>2016-10-29 23:30:00</div>
-                                </div>
-                                <div class="game">
-                                    <div>EVE</div>
-                                    <div>@ WHU</div>
-                                    <div>2016-10-30 20:30:00</div>
-                                </div>
-                                <div class="game">
-                                    <div>STK</div>
-                                    <div>@ SWA</div>
-                                    <div>2016-11-01 03:00:00</div>
-                                </div>
-                            </div>
-                            <br>
-                            <br>
-                            <div class="inputHeading1"><b>Scoring Categories:</b></div>
-                            <div class="scoring">
-                                <div class="scoringHeading">Goal</div>
-                                <div class="scoringValue">5 Pts.</div>
-                                <div class="scoringHeading">Assist</div>
-                                <div class="scoringValue">4 Pts.</div>
-                                <div class="scoringHeading">Completed Pass</div>
-                                <div class="scoringValue">0.02 Pts.</div>
-                                <div class="scoringHeading">Completed Key Pass</div>
-                                <div class="scoringValue">1 Pts.</div>
-                                <div class="scoringHeading">Cross</div>
-                                <div class="scoringValue">0.4 Pts.</div>
-                                <div class="scoringHeading">Completed Cross</div>
-                                <div class="scoringValue">1 Pts.</div>
-                                <div class="scoringHeading">Tackle</div>
-                                <div class="scoringValue">0.4 Pts.</div>
-                                <div class="scoringHeading">Interception</div>
-                                <div class="scoringValue">0.4 Pts.</div>
-                                <div class="scoringHeading">Clearance</div>
-                                <div class="scoringValue">0.5 Pts.</div>
-                            </div>
-                        </div>
-                        <div class="mediabox2">
-                            <div class="inputHeading1"><b>Prize Payout Structure</b></div>
-                            <div class="prizes">
-                                <div class="prizesHeading"><b>1st:</b></div>
-                                <div class="prizesValue">40% of Prize Pool</div>
-                                <div class="prizesHeading"><b>2nd:</b></div>
-                                <div class="prizesValue">20% of Prize Pool</div>
-                                <div class="prizesHeading"><b>3rd:</b></div>
-                                <div class="prizesValue">15% of Prize Pool</div>
-                                <div class="prizesHeading"><b>4th - 13th:</b></div>
-                                <div class="prizesValue">0.1% of Prize Pool Per Person</div>
-                                <div class="prizesHeading"><b>14th - 25th:</b></div>
-                                <div class="prizesValue">0.066% of Prize Pool Per Person</div>
-                                <div class="prizesHeading"><b>26th - 37th:</b></div>
-                                <div class="prizesValue">0.041% of Prize Pool Per Person</div>
-                                <div class="prizesHeading"><b>38th - 50th:</b></div>
-                                <div class="prizesValue">0.015% of Prize Pool Per Person</div>
-                            </div>
-                        </div>
-                        <!-- /content -->
-                    </div>
-                    <!-- /tabs -->
-                </div>
+<div class="modal fade" id="modalPlayer" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#094E5A; color:white;">
+        <h4 class="modal-title text-center">PLAYER DETAIL</h4>
+      </div>
+      <div class="modal-body player-modal-body" style="padding:0px;">
+        <div class="col-md-12">
+          <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 detail-profile">
+            <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 detail">
+              <div class="name text-center">
+                <img src={{player.player_info.photo}} alt="" width="170px"/>
+              </div>
             </div>
+            <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 detail player-name">
+              <div class="name">
+                <h3 class="text-center player-detail-name">
+                  {{player.player_info.first_name + ' ' + player.player_info.last_name}}
+                </h3>
+              </div>
+              <div class="list border-list-player">
+                Team Name : {{player.player_info.team_name}}
+              </div>
+              <div class="list border-list-player">
+                Age : {{player.player_info.age}}
+              </div>
+              <div class="height-weight border-list-player">
+                <div class="detail-height">Height : {{player.player_info.height}}  cm</div>
+                <div class="detail-weight">Weight : {{player.player_info.weight}} kg</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 detail-profile">
+            <div class="table-player-status detail">
+              <table class="table table-bordered text-center">
+                <thead>
+                  <tr>
+                    <th class="text-center">Salary</th>
+                    <th class="text-center">Avg FP</th>
+                    <th class="text-center">FORM</th>
+                    <th class="text-center">Pro. Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{player.player_info.salary}}</td>
+                    <td>{{player.player_info.fp_avg}}</td>
+                    <td>{{player.player_info.fp_form}}</td>
+                    <td>{{player.player_info.pos}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="next-games">
+              <h5 class="text-center">next game : ARS 21/2</h5>
+            </div>
+          </div>
         </div>
+        <div class="col-md-12">
+          <div class="col-md-12 col-xs-12 col-lg-12">
+            <table class="table table-responsive table-bordered	table-striped text-center scroll" id="table-details-status">
+              <thead>
+                <tr>
+                  <th class="text-center">Date</th>
+                  <th class="text-center">Opponent</th>
+                  <th class="text-center">FP</th>
+                  <th class="text-center">G</th>
+                  <th class="text-center">A</th>
+                  <th class="text-center">P</th>
+                  <th class="text-center">KP</th>
+                  <th class="text-center">CR</th>
+                  <th class="text-center">AC</th>
+                  <th class="text-center">T</th>
+                  <th class="text-center">I</th>
+                  <th class="text-center">CL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="playerStatus in player.player_stats_log">
+                  <td>{{playerStatus.date}}</td>
+                  <td>{{playerStatus.opp_name}}</td>
+                  <td>5.34</td>
+                  <td>{{playerStatus.fp_goals}}</td>
+                  <td>{{playerStatus.fp_assists}}</td>
+                  <td>{{playerStatus.fp_passes}}</td>
+                  <td>{{playerStatus.fp_key_passes}}</td>
+                  <td>{{playerStatus.fp_crosses}}</td>
+                  <td>{{playerStatus.fp_accurate_crosses}}</td>
+                  <td>{{playerStatus.fp_tackles}}</td>
+                  <td>{{playerStatus.fp_interceptions}}</td>
+                  <td>{{playerStatus.fp_clearances}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="button" id="btn-close-player" class="btn btn-default text-center" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer player-modal-footer">
 
-    </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
 </div>
+
+<div class="modal fade" id="modalVideo" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content panel-primary">
+       <div class="modal-header panel-heading code col-md-6 col-lg-5 col-sm-8 col-xs-8" ng-show="!videoOnEnded">
+         <h3 class="modal-title text-center">Your Code : BOSS</h3>
+       </div>
+       <br>
+       <div class="modal-header panel-heading">
+         <h3 class="modal-title text-center">This Contest is Sponsored By :</h3>
+       </div>
+       <div class="modal-body" ng-show="!videoOnEnded">
+         <video style="border: 1px solid black;padding: 0;margin: 0;width: 100%;height: 100%;background-color: black;margin: 0 auto;float: none;" id="video" controls="" preload="none" mediagroup="myVideoGroup" poster="https://media.w3.org/2010/05/sintel/poster.png">
+           <source id="mp4" src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
+           <source id="webm" src="https://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm">
+           <source id="ogv" src="https://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg">
+           <p>Your user agent does not support the HTML5 Video element.</p>
+         </video>
+       </div>
+       <div class="modal-body" ng-show="videoOnEnded">
+         <div class="col-md-6 col-xs-12 col-sm-8" id="inputCode">
+           <input type="text" name="code" ng-model="contestCode" class="contest-code" placeholder="ENTER CODE HERE" />
+           <button type="button" name="button" class="btn btn-primary green-btn submitCode" ng-click="submitCode()">SUBMIT</button>
+           <button type="button" name="button" class="btn btn-primary green-btn rewatch" ng-click="rewatch()">REWATCH</button>
+         </div>
+       </div>
+     </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+ </div><!-- /.modal -->
+
+
+
+<div class="modal fade" id="modalError" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content panel-danger">
+       <div class="modal-header panel-heading" style="background:#094E5A; color:white;">
+         <h4 class="modal-title">Information.</h4>
+       </div>
+
+       <div class="modal-body">
+         <ul>
+           <li ng-repeat="message in messageError">
+             {{message}}
+           </li>
+         </ul>
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal();lobbyPages()">Close</button>
+       </div>
+     </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+ </div><!-- /.modal -->

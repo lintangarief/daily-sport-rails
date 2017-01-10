@@ -1,0 +1,90 @@
+<div class="container-fluid main-container ng-scope" id="lobby">
+  <div class="container-fluid lobby no-padding no-margin box-content">
+    <div class="container container-1">
+        <div class="row row-1">
+          <table class="table-header visible-md visible-lg">
+            <tbody>
+              <tr>
+                <td>
+                  <br>
+                  <hr>
+                </td>
+                <td>
+                  <h1 class="orange-text text-center">GAMES</h1>
+                </td>
+                <td>
+                  <br>
+                  <hr>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="width: 100%;" class="table-header mobile visible-xs visible-sm">
+            <tbody>
+              <tr>
+                <td>
+                  <h1 class="orange-text text-center">GAMES</h1>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <div class="container container-2">
+      <div class="row">
+        <div class="col-md-3">
+          <a ng-click="filters.leagues_id = ''" class="btn btn-primary btn-all-outlet">ALL CONTEST</a>
+        </div>
+        <div class="col-md-3">
+          <a ng-click="filters.leagues_id = ''" class="btn btn-primary btn-all-outlet">ACTIVE CONTEST</a>
+        </div>
+        <div class="col-md-3">
+          <a ng-click="filters.leagues_id = ''" class="btn btn-primary btn-all-outlet">INACTIVE CONTEST</a>
+        </div>
+        <div class="col-md-3">
+          <a ng-click="filters.leagues_id = ''" class="btn btn-primary btn-all-outlet">RUNNING CONTEST</a>
+        </div>
+      </div>
+    </div>
+    <div class="container container-3">
+      <div class="col-sm-12 trans-1">
+        <table class="mk-table-fixed mk-table-clickable table header-table">
+          <thead>
+            <tr>
+              <th>CONTEST</th>
+              <th>ENTRY SIZE</th>
+              <th>ENTRY FEE</th>
+              <th>SPONSOR</th>
+              <th>PRIZES</th>
+              <th></th>
+            </tr>
+          </thead>
+        </table>
+        <div class="box-scroll">
+          <table class="mk-table-fixed mk-table-clickable table ng-isolate-scope" id="categories-table" st-table="categories" st-pagination-scroll="" st-pipe="loadCategories">
+            <tbody>
+              <tr ng-repeat="contest in contests.data.active_contests | filter:filters" ng-click="showContestModal(contest)">
+                <td>{{contest.contest_name}}</td>
+                <td>{{contest.entry_count}} / {{contest.entry_max}}</td>
+                <td>{{contest.entry_fee}}</td>
+                <td>
+                  <img src="{{contest.sponsorlogomobile}}" alt="sponsor contest" class="img-responsive img-sponsor visible-xs"/>
+                  <img src="{{contest.sponsorbannertablet}}" alt="sponsor contest" class="img-responsive img-sponsor visible-sm"/>
+                  <img src="{{contest.sponsorlogodesktop}}" alt="sponsor contest" class="img-responsive img-sponsor visible-md visible-lg"/>
+                </td>
+                <td>{{contest.prize}}</td>
+                <td><a ng-click="enterContest(contest.leagues_id, contest.contest_id, $event.stopPropagation())"><img class="img-responsive" src="/assets/button_enter_idle.png" alt="" /></a></td>
+              </tr>
+              <tr>
+                <td colspan="6" ng-if="contests.data.active_contests.length < 1">
+                  <h3 class="text-center">No data Contest</h3>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

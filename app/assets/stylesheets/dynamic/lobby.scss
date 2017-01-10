@@ -1,4 +1,8 @@
 div#lobby{
+  img.img-responsive.img-sponsor {
+    max-width: 80px;
+    margin: 0 auto;
+  }
   .btn-all-outlet{
     height: 90px;
     width: 100%;
@@ -113,8 +117,51 @@ div#lobby{
   }
   .orange-text { color: #ff971f; }
   #modal-contest {
+    .modal-header{
+      background: #094E5A;
+      padding: 0;
+      h4{
+        margin-top: 0px;
+        padding-bottom: 10px;
+      }
+    }
     .modal-dialog{
       width: 80%;
+      margin-top: 8%;
+      max-width: 1170px;
+    }
+    .modal-body{
+      background: #06343C;
+      display: table;
+      div.first-content{
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      div.second-content{
+        background: #094E5A;
+      }
+      div.third-content{
+        background: #00252C;
+        padding: 10px;
+        ul{
+          display: table;
+          list-style: none;
+          padding: 0px;
+          width: 100%;
+          text-align: center;
+          li{
+            float: left;
+            width: 20%;
+            padding: 10px 0px;
+          }
+        }
+        .box-first{
+          padding: 0px;
+          .box-scoring{
+            padding: 0px;
+          }
+        }
+      }
     }
   }
 }

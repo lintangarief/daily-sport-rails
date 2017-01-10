@@ -1,29 +1,8 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
-en:
+id:
   homepage:
-    think_you_know_sport: "THINK YOU KNOW SPORTS?"
-    prove_it: "PROVE IT"
-    its_easy_to_play: "IT'S EASY TO PLAY"
+    think_you_know_sport: "Berpikir Anda Tahu Sports?"
+    prove_it: "Buktikan Itu"
+    its_easy_to_play: "Sangat mudah untuk Bermain"
   about:
     daily_sport_boss_is_a_small_team: "Daily Sport Boss is a small team of friends who share a passion for sports. Based in Jakarta, the team came together and realized there wasn't an existing Fantasy Sport platform that was engaging or rewarding for sport lovers. Thus, Daily Sport Boss was formed with a vision to introduce and provide the first game-changing, free-to-play Daily Fantasy Sport application in Indonesia."
     through_partnerships_with_sponsors: "Through partnerships with sponsors, Daily Sport Boss will provide weekly contests that run over a short period of time. All contests will be free to enter but Daily Sport Boss will still provide an opportunity for users to win real cash prizes!"

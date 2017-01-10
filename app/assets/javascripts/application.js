@@ -26,6 +26,10 @@
 //= require ./libs/bootstrap-dialog
 //= require ./libs/formValidation
 //= require ./libs/formValidation-bootstrap
+//= require ./libs/moment
+//= require ./libs/angular-moment.min.js
+//= require ./libs/moment-timezone
+//= require ./libs/angular-time-down
 
 //= require_tree ./templates
 //= require_tree ./controller
