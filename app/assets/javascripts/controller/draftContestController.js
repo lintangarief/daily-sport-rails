@@ -14,6 +14,7 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
       $scope.events = {};
       $scope.timeshow = false;
       $scope.showError = false;
+      $scope.draftName = '';
       authenticationSvc.getContestDetail($scope.token || "", $scope.ligaId, $scope.contestId).then(function(result){
         $scope.contest = result.data;
         checkEnterContest($scope.contest);
@@ -35,7 +36,18 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
           player.fp_form = parseInt(player.fp_form)
         })
       })
+      if ($scope.isLogin) {
+        var draftContest = window.localStorage.getItem("draftContest")
+        if (draftContest) {
+          draftContest = JSON.parse(draftContest)
+          if (draftContest.contestId === $scope.contestId) {
+            $scope.players_select = draftContest.listPlayerselected
+            $scope.draftName = draftContest.draftName
+          }
+        }
+      }
     };
+
 
     function checkEnterContest(contest){
       gameService.checkEnterContest($scope.contest.contest_id).then(function(result){
@@ -102,7 +114,10 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
 
     $scope.selectPlayer = function(player){
       if (currentRem()) {
-        alert("Sorry, player can't append to list, please check your Salary Rem")
+        BootstrapDialog.show({
+            title: "Message",
+            message: "Sorry, player can't append to list, please check your Salary Rem"
+        });
         return false;
       }
       if (!$scope.players_select.length){
@@ -161,7 +176,10 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
         });
         currentRem();
       }else{
-        alert("You can only choose"+ max +" "+ pos);
+        BootstrapDialog.show({
+            title: "Message",
+            message: "You can only choose "+ max +" "+ pos
+        });
       }
     }
 
@@ -175,24 +193,65 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
     }
 
     $scope.draftTeamClick = function(){
-      var mp4 = document.getElementById("mp4");
-      mp4.setAttribute('src', 'http://api.dailysportboss.com/video/ads/mp4/' + $scope.contest.sponsors_id);
-      var webm = document.getElementById("webm");
-      webm.setAttribute('src', 'http://api.dailysportboss.com/video/ads/webm/' + $scope.contest.sponsors_id);
-      var ogv = document.getElementById("ogv");
-      ogv.setAttribute('src', 'http://api.dailysportboss.com/video/ads/ogv/' + $scope.contest.sponsors_id);
+      var message = []
+      if (!$scope.draftName) {
+        message.push("Team Name is Required")
+      }
 
-      $('#modalVideo').modal({ backdrop:'static',keyboard:false, show:true});
-      $scope.videoOnEnded = false;
-      var video = document.getElementById("video");
-      $('#video').get(0).play();
-      video.onended = function() {
-        $scope.videoOnEnded = true;
-      };
-      $scope.capcha  = ".....";
-      gameService.getChapcha().then(function(result){
-        $scope.capcha = result.randomword;
+      var playerIds = playersSelectedIds();
+      if (!playerIds.length) {
+        message.push("Select Player is Required")
+      }
+
+      if (message.length) {
+        BootstrapDialog.show({
+            title: "Message",
+            message: message.join(', ')
+        });
+        return false
+      }
+
+      var draftContest = {
+        contestId: $scope.contest.contest_id,
+        eventId: $scope.selectedEventId,
+        draftName: $scope.draftName,
+        listPlayerselected: $scope.players_select,
+        listPlayerselectedIds: playerIds
+      }
+
+      if ($scope.isLogin) {
+        window.localStorage.removeItem("draftContest");
+        var mp4 = document.getElementById("mp4");
+        mp4.setAttribute('src', 'http://api.dailysportboss.com/video/ads/mp4/' + $scope.contest.sponsors_id);
+        var webm = document.getElementById("webm");
+        webm.setAttribute('src', 'http://api.dailysportboss.com/video/ads/webm/' + $scope.contest.sponsors_id);
+        var ogv = document.getElementById("ogv");
+        ogv.setAttribute('src', 'http://api.dailysportboss.com/video/ads/ogv/' + $scope.contest.sponsors_id);
+
+        $('#modalVideo').modal({ backdrop:'static',keyboard:false, show:true});
+        $scope.videoOnEnded = false;
+        var video = document.getElementById("video");
+        $('#video').get(0).play();
+        video.onended = function() {
+          $scope.videoOnEnded = true;
+        };
+        $scope.capcha  = ".....";
+        gameService.getChapcha().then(function(result){
+          $scope.capcha = result.randomword;
+        })
+      } else {
+        window.localStorage.setItem("draftContest", JSON.stringify(draftContest));
+        debugger
+        $state.go('login', {message: "Please Login To Your Account, Before Create a Team Draft"}, {reload: true});
+      }
+    }
+
+    function playersSelectedIds(){
+      var playerIds = new Array
+      $scope.players_select.map(function(player){
+        playerIds.push(player.player_phase_id)
       })
+      return playerIds
     }
 
     $scope.removePlayer = function(player_delete){
