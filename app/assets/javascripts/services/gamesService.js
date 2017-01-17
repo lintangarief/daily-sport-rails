@@ -133,6 +133,31 @@ dailyApp.factory("gameService", ["$http","$q","$window", "authenticationSvc",fun
       return deferred.promise;
     }
 
+    function sendTeamDraft(params, idContest, idEvent){
+      var deferred = $q.defer();
+      $http({
+          method: 'POST',
+          url: urlBase + '/draft/add/' + idContest + '/' + idEvent,
+          headers: {'Content-Type': 'application/x-www-form-urlencoded', "Authorization": userInfo ? userInfo.token : ""},
+          transformRequest: function(obj) {
+              var str = [];
+              for(var p in obj)
+              str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+              return str.join("&");
+          },
+          data: params
+      }).success(function (data, status, headers, config) {
+        if (data.error) {
+          deferred.reject(data);
+        }
+        deferred.resolve(data);
+      })
+      .error(function (data, status, header, config) {
+        deferred.reject(data);
+      });
+      return deferred.promise;
+    }
+
     function init() {
         if ($window.sessionStorage["userInfo"]) {
           userInfo = JSON.parse($window.sessionStorage["userInfo"]);
@@ -147,6 +172,7 @@ dailyApp.factory("gameService", ["$http","$q","$window", "authenticationSvc",fun
       getPlayers: getPlayers,
       checkEnterContest: checkEnterContest,
       getPlayerDetail: getPlayerDetail,
-      getChapcha: getChapcha
+      getChapcha: getChapcha,
+      sendTeamDraft: sendTeamDraft
     };
 }]);

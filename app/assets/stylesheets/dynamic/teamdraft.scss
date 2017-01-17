@@ -271,11 +271,6 @@ div#teamdraft{
 }
 
 #modalVideo{
-  video::-webkit-media-controls {
-    display: none;
-  }
-  .tp-video-pause-button {display: none !important}
-
   div#inputCode {
     float: none;
     margin: 0 auto;

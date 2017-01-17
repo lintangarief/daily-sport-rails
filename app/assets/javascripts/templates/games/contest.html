@@ -57,7 +57,7 @@
               <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6">
                 <select ng-model="selectedEventId" class="form-control">
                   <option value="[0,0]" selected="selected">All Match</option>
-                  <option ng-repeat="option in events" ng-value="[option.team_name_home, option.team_name_away]">
+                  <option ng-repeat="option in events" ng-value="[option.team_name_home, option.team_name_away, option.eventsid]">
                     {{option.team_full_home.toUpperCase() + ' vs ' + option.team_full_away.toUpperCase()}}
                   </option>
                 </select>
@@ -266,11 +266,11 @@
        <div class="modal-header panel-heading">
          <h3 class="modal-title text-center">This Contest is Sponsored By :</h3>
        </div>
-       <div class="modal-body" ng-show="!videoOnEnded">
+       <div class="modal-body" ng-show="!videoOnEnded" ng-if="contest">
          <video style="border: 1px solid black;padding: 0;margin: 0;width: 100%;height: 100%;background-color: black;margin: 0 auto;float: none;" id="video" controls="" preload="none" mediagroup="myVideoGroup" poster="https://media.w3.org/2010/05/sintel/poster.png">
-           <source id="mp4" src="" type="video/mp4">
-           <source id="webm" src="" type="video/webm">
-           <source id="ogv" src="" type="video/ogg">
+           <source id="mp4" ng-src="{{videoMp4}}" type="video/mp4">
+           <source id="webm" ng-src="{{videoWebm}}" type="video/webm">
+           <source id="ogv" ng-src="{{videoOgg}}" type="video/ogg">
            <p>Your user agent does not support the HTML5 Video element.</p>
          </video>
        </div>

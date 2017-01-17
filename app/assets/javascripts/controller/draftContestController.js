@@ -1,6 +1,6 @@
 var dailyApp = angular.module("daily");
-dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state", "$location", "$http", "$rootScope", "$window", "authenticationSvc", "$timeout", "gameService", "constant", "$interval",
- function ($scope, $rootScope, $state, $location, $http, $rootScope, $window, authenticationSvc, $timeout, gameService, constant, $interval) {
+dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state", "$location", "$http", "$rootScope", "$window", "authenticationSvc", "$timeout", "gameService", "constant", "$interval", "$sce",
+ function ($scope, $rootScope, $state, $location, $http, $rootScope, $window, authenticationSvc, $timeout, gameService, constant, $interval,$sce) {
     function init() {
       $scope.activeMenu = 'all';
       $scope.players_select = [];
@@ -17,8 +17,12 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
       $scope.draftName = '';
       authenticationSvc.getContestDetail($scope.token || "", $scope.ligaId, $scope.contestId).then(function(result){
         $scope.contest = result.data;
+        $scope.videoMp4 = $sce.trustAsResourceUrl('http://api.dailysportboss.com/video/ads/mp4/' + $scope.contest.sponsors_id);
+        $scope.videoWebm = $sce.trustAsResourceUrl('http://api.dailysportboss.com/video/ads/webm/' + $scope.contest.sponsors_id);
+        $scope.videoOgg = $sce.trustAsResourceUrl('http://api.dailysportboss.com/video/ads/ogg/' + $scope.contest.sponsors_id);
         checkEnterContest($scope.contest);
-      })
+      });
+
       gameService.getContestEvent($scope.ligaId).then(function(result){
         $scope.events = result.data;
         var contestTimespan = moment.tz(result.data[0].start_date + " " + result.data[0].start_time, "Asia/Jakarta").toDate();
@@ -29,13 +33,15 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
         $scope.timeshow = true;
         $scope.timerActive = true;
       });
+
       gameService.getPlayers($scope.contestId).then(function(result){
         $scope.players = result.data;
         $scope.players.map(function(player){
           player.salary = parseInt(player.salary);
           player.fp_form = parseInt(player.fp_form)
         })
-      })
+      });
+
       if ($scope.isLogin) {
         var draftContest = window.localStorage.getItem("draftContest")
         if (draftContest) {
@@ -187,13 +193,16 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
       gameService.getPlayerDetail($scope.contest.contest_id, player.player_phase_id).then(function(result){
         $scope.player = result;
         $('#modalPlayer').modal({ backdrop:'static',keyboard:false, show:true});
-      }, function(e){
-
       })
     }
 
     $scope.draftTeamClick = function(){
       var message = []
+      $scope.videoOnEnded = false;
+      if (!$scope.selectedEventId[2]) {
+        message.push("Please Select a Match Event")
+      }
+
       if (!$scope.draftName) {
         message.push("Team Name is Required")
       }
@@ -213,23 +222,15 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
 
       var draftContest = {
         contestId: $scope.contest.contest_id,
-        eventId: $scope.selectedEventId,
+        eventId: $scope.selectedEventId[2],
         draftName: $scope.draftName,
         listPlayerselected: $scope.players_select,
         listPlayerselectedIds: playerIds
       }
-
+      $scope.draftContest = draftContest;
       if ($scope.isLogin) {
         window.localStorage.removeItem("draftContest");
-        var mp4 = document.getElementById("mp4");
-        mp4.setAttribute('src', 'http://api.dailysportboss.com/video/ads/mp4/' + $scope.contest.sponsors_id);
-        var webm = document.getElementById("webm");
-        webm.setAttribute('src', 'http://api.dailysportboss.com/video/ads/webm/' + $scope.contest.sponsors_id);
-        var ogv = document.getElementById("ogv");
-        ogv.setAttribute('src', 'http://api.dailysportboss.com/video/ads/ogv/' + $scope.contest.sponsors_id);
-
         $('#modalVideo').modal({ backdrop:'static',keyboard:false, show:true});
-        $scope.videoOnEnded = false;
         var video = document.getElementById("video");
         $('#video').get(0).play();
         video.onended = function() {
@@ -241,7 +242,6 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
         })
       } else {
         window.localStorage.setItem("draftContest", JSON.stringify(draftContest));
-        debugger
         $state.go('login', {message: "Please Login To Your Account, Before Create a Team Draft"}, {reload: true});
       }
     }
@@ -263,6 +263,44 @@ dailyApp.controller("draftContestController", ["$scope", "$rootScope", "$state",
 
     $scope.closeModal = function(){
       $('.modal-backdrop').remove();
+    }
+
+    $scope.submitCode = function(){
+      var teamName = $scope.selectedEventId.replace(/\[/g, '')
+      teamName = teamName.replace(/\]/g, '')
+      if (typeof teamName == "string") {
+        teamName = teamName.split(',');
+      }
+      gameService.sendTeamDraft(formatTeamDraft(), $scope.contestId, teamName[2]).then(function(result){
+        $scope.player = result;
+      })
+    }
+
+    $scope.rewatch = function(){
+      $scope.draftTeamClick();
+    }
+
+    function formatTeamDraft(){
+      var forwards = [],
+          defenders = [],
+          midfielders = []
+      $scope.players_select.map(function(player){
+        if (player.pos == "Defender") {
+          defenders.push(player.player_phase_id)
+        }
+        if (player.pos == "Forward") {
+          forwards.push(player.player_phase_id)
+        }
+        if (player.pos == "Midfielder") {
+          midfielders.push(player.player_phase_id)
+        }
+      })
+      return {
+        roster_name: $scope.draftName,
+        forwards: forwards,
+        defenders: defenders,
+        midfielders: midfielders
+      }
     }
 
     function currentRem(){
